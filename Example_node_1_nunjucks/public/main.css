@@ -1,0 +1,78 @@
+*{ box-sizing: border-box; } /*뭔지 모름*/
+html, body { 
+    /* width: 1280px; */
+    margin: 0; 
+    padding: 0; 
+    height: 100%;   
+    background-color: rgb(21, 21, 26)
+}
+
+
+/*버튼에 대해서 생각 중*/
+.bbtn {
+    display: inline-block;
+    padding: 0 5px;
+    text-decoration: none;
+    cursor: pointer;
+    border-radius: 4px;
+    background: white;
+    border: 1px solid silver;
+    color: crimson;
+    height: 37px;
+    line-height: 37px;
+    vertical-align: top;
+    font-size: 12px;
+}
+
+.header-line {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 20px;
+}
+
+.footer-line {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding-top: 20px; 
+}
+
+.menu-line li{
+    /* display: block; */
+    list-style-type: none; float: left;
+    padding-left: 5px;
+    padding-right: 5px;
+    background-color: aqua;
+}
+
+.login {
+    display: flex;
+    justify-content: flex-end;
+    align-content: center;
+    
+    /* padding-bottom: 40px; */
+}
+
+.main-content {
+    display: flex;
+    justify-content: center;
+    padding-top: 20px; 
+}
+
+.timeline {
+    /* background-color: brown; */
+}
+
+.board th {
+    padding-right: 10px;
+    border-right: solid slategrey;
+}
+
+.button {
+    /* border: none; */
+    border-radius: 6px;
+}
+
+.content {
+}

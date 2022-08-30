@@ -1,0 +1,115 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+    <input type="hidden" value="{{userId}}" id="userId">
+    <input type="hidden" value="{{board.userId}}" id="writerId">
+    <!-- <input type="hidden" value="{{board.id}}" id="boardId"> -->
+    <div class="board">
+        <span>id: </span>
+        <label>{{board.id}}</label><br><br>
+        <span>title: </span><span></span><br>
+        {{board.title}}
+        <br>
+        <br>
+        <div class="side_data_warp">
+            date: {{board.createdAt}}k
+            <br>
+            view: {{board.viewCount}} 
+            <br>
+            like: {{board.likeCount}}
+            <button class="delete" id="board-delete-btn" onclick="location.href='/board/like/{{board.id}}'">좋아요</button>
+            <br>
+            hate: {{board.hateCount}}
+            <button class="delete" id="board-delete-btn" onclick="location.href='/board/hate/{{board.id}}'">싫어요</button>
+        </div>
+        <br>
+        content : <br> <br>  {{board.content}}
+        <!-- <ㅅㄷㅌㅅ class="content" rows="5" cols="33" id="content"></ㅅ> -->
+        <br>
+        <br>
+        <section class="board_writer_btn">
+            <button class="update" id="board-update-btn" onclick="location.href='/board/update/{{board.id}}'">수정</button>
+            <button class="delete" id="board-delete-btn" onclick="location.href='/board/delete/{{board.id}}'">삭제</button>
+            <button class="delete" id="board-delete-btn" onclick="location.href='/board/like/{{board.id}}'">좋아요</button>
+            <button class="delete" id="board-delete-btn" onclick="location.href='/board/hate/{{board.id}}'">싫어요</button>
+        </section>
+
+        <div class="comment_warp">
+            <div class="comment_input_warp">
+                <div class="comment_content">
+                    <input type="text" id="comment_inpud">
+                </div>
+                <div class="comment_btn_warp">
+                    <button class="comment_btn_write">write</button>
+                    <button class="comment_btn_cancel">cancel</button>
+                </div>
+            </div>
+        </div>
+    </div>
+   
+{% endblock %}
+
+
+{% block script %}
+    <script>
+        const userId = document.querySelector('#userId').value;
+        const writerId =  document.querySelector('#writerId').value;
+        const writerBtn = document.querySelector('.board_writer_btn');
+        writerBtn.style.visibility = "hidden";
+        if (userId) {
+            if (userId == writerId) {
+                writerBtn.style.visibility = "visible";
+            }
+        }
+
+        window.addEventListener('load', () => {
+            ajax.get('/board/comment')
+             .then((res) => {
+                makeComment(res.data);
+             })
+        })        
+
+        function makeComment(comments) {
+            if (res.data) {
+                if (document.querySelector('.comments')) {
+                    document.querySelector('.comment').remove();
+                }
+                let commentsElement = document.createElement('comments');
+                commentsElement.class = 'comments';
+                document.querySelector('comment_warp').appendChild(commentsElement);
+
+                for (var comment of comments) {
+                    let p = document.createElement('p');
+                    let a = document.createElement('a');
+                    let userNick = document.createElement('span');
+                    userNick.value = comment.user.nick;
+                    a.appendChild(userNick)
+                    p.appendChild(a);
+                    let content = document.createElement('spna');
+                    content.value = comment.content;
+                    p.appendChild(comment);
+                    let date = document.createElement('span');
+                    date.value = comment.date;
+                    p.appendChild(date);
+                    let deleteBtn = document.createElement('button');
+                    deleteBtn.value = 'X';
+                    p.appendChild(deleteBtn);
+                    commentsElement.appendChild(p);
+                }
+            }
+        }
+
+        // document.querySelector('#board-update-btn').addEventListener('click', function(e) {
+        //     e.preventDefault();
+        //     const boardId = document.querySelector('#boardId');
+        //     const data = { title, content };
+        //     axios.get(`/board/update/:`+ boardId)
+        //         .then((data) => {
+        //             location.href='/board';
+        //         })
+        //         .catch((err) => {       
+        //             console.error(err);
+        //         })
+        // });
+    </script>
+{% endblock%}

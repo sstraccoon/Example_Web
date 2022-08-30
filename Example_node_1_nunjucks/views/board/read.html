@@ -1,0 +1,52 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+    <div class="board">
+        <!-- <input type="text" id="title"> -->
+
+        <span>title: </span><span></span><br><br> 
+        {{board.title}}
+        <br>
+        <div class="date">
+            date: {{board.createdAt}}
+            <br>
+            view: {{board.viewCount}} 
+            <br>
+            like: {{board.likeCount}}
+            <br>
+            hate: {{board.hateCount}}
+        </div>
+        <!-- <div class="count">
+            view: 
+            {{board.viewCount}}
+        </div> -->
+        <br>
+        content : <br> <br>  {{board.content}}
+        <!-- <ㅅㄷㅌㅅ class="content" rows="5" cols="33" id="content"></ㅅ> -->
+        <br>
+        <br>
+
+        <button class="update" id="board-update-btn">수정</button>
+        <button class="delete" id="board-delete-btn">삭제</button>
+        <button class="button" id="board-write-cancle-btn" onclick="location.href='/boa56rd'">취소</button>
+    </div>
+{% endblock %}
+
+
+{% block script %}
+    <script>
+        // document.querySelector('#board-write-btn').addEventListener('click', function(e) {
+        //     e.preventDefault();121212121212121212221212
+        //     const title = document.querySelector('#title').value;
+        //     const content = document.querySelector('#content').value;
+        //     const data = { title, content };
+        //     axios.post(`/board/write`, (data))
+        //         .then((data) => {
+        //             location.href='/board';
+        //         })
+        //         .catch((err) => {       
+        //             console.error(err);
+        //         })
+        // });
+    </script>
+{% endblock%}

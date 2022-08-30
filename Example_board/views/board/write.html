@@ -1,0 +1,31 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+    <div class="board">
+        <input type="text" id="board_title">
+        <br>
+        <textarea class="content" rows="5" cols="33" id="board_content"></textarea>
+        <br>
+        <button class="button" id="board-write-btn">작성하기</button>
+        <button class="button" id="board-write-cancle-btn" onclick="location.href='/board'">취소</button>
+    </div>
+{% endblock %}
+
+
+{% block script %}
+    <script>
+        document.querySelector('#board-write-btn').addEventListener('click', function(e) {
+            e.preventDefault();
+            const title = document.querySelector('#board_title').value;
+            const content = document.querySelector('#board_content').value;
+            const data = { title, content };
+            axios.post(`/board/write`, (data))
+                .then((data) => {
+                    location.href='/board';
+                })
+                .catch((err) => {       
+                    console.error(err);
+                })
+        });
+    </script>
+{% endblock%}

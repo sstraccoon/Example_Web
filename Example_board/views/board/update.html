@@ -1,0 +1,33 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+    <div class="board">
+        <input type="hidden" id="board_id" value="{{board.id}}">
+        <input type="text" id="board_title" value="{{board.title}}">
+        <br>
+        <input class="content" rows="5" cols="33" id="board_content" value="{{board.content}}"></input>
+        <br>
+        <button class="button" id="board-update-btn">수정하기</button>
+        <button class="button" id="board-update-cancle-btn" onclick="location.href='/board'">취소</button>
+    </div>
+{% endblock %}
+
+
+{% block script %}
+    <script>
+        document.querySelector('#board-update-btn').addEventListener('click', function(e) {
+            e.preventDefault();
+            const boardId = document.querySelector('#board_id').value;
+            const title = document.querySelector('#board_title').value;
+            const content = document.querySelector('#board_content').value;
+            const data = { boardId, title, content };
+            axios.post(`/board/update`, (data))
+                .then((data) => {
+                    location.href='/board';
+                })
+                .catch((err) => {       
+                    console.error(err);
+                })
+        });
+    </script>
+{% endblock%}
