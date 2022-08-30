@@ -1,0 +1,103 @@
+:root {
+    /* color */
+    --white-color: #fff;
+    --block-color: #140a00;
+    --blue-color: #045FD4;
+    --blue-dark-color: #263343;
+    --red-color: #ff0000;
+    --grey-dark-color: #909090;
+    --gray-light-color: #e0e0e0;
+    --orange-color: #d49466;
+    --green-color: #19ce60;
+
+    /* size */
+    --padding: 12px;
+    --header-padding: 12px 30px;
+    --li-padding: 8px 12px;
+    
+    /* font size */
+    --font-logo: 24px;
+    --font-lange: 18px;
+    --font-medium: 14px;
+    --font-small: 12px;
+    --font-micro: 10px;
+}
+
+* {
+    padding: 0;
+    margin: 0;
+    /* 박스를 만들때 패딩이나 마진을 줬을때 그것을 포함되어서 사이즈가 결정 됨 */
+    box-sizing: border-box; 
+}
+
+a {
+    text-decoration: none;
+}
+
+ul {
+    list-style: none;
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    background-color: var(--blue-dark-color);
+    color: var(--white-color);
+    padding: var(--header-padding);
+}
+
+header a {
+    color: var(--white-color)
+}
+
+
+/* logo */
+
+header .navbar__logo{
+    display: flex;
+    align-items: center;
+}
+
+header .navbar__logo a {
+    font-size: var(--font-logo);
+}
+
+
+/* menu */
+
+header .navbar__menu > ul {
+    display: flex;
+    justify-items: center;
+    margin: 0;
+    padding: 0;
+}
+
+header .navbar__menu > ul > li {
+    display: flex;
+    justify-content: center;
+    padding: var(--li-padding);
+}
+
+header .navbar__menu ul li:hover {
+    background-color: var(--orange-color);
+    border-radius: 8px;
+}
+
+header .navbar__menu ul li a:hover {
+    color: var(--white-color);
+}
+
+
+/* login */
+
+header .navbar__login {
+    display: flex;
+    align-items: center;
+    padding-right: var(--padding);
+}
+
+header .navbar__login button {
+    padding: var(--li-padding);
+    background-color: var(--green-color);
+    color: var(--white-color);
+}

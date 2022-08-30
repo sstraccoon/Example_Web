@@ -1,0 +1,52 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+  <div class="timeline">
+    <form id="join-form" action="/auth/join" method="post">
+      <div class="mb-3">
+
+        <label for="exampleInputEmail1" class="form-label">Email address</label>
+        <input type="email" class="form-control" id="join-email" aria-describedby="emailHelp">
+        <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
+      </div>
+      <div class="mb-3">
+        <label for="exampleInputPassword" class="form-label">Password address</label>
+        <input type="password" class="form-control" id="join-password" aria-describedby="passwordHelp">
+        <div id="passwordHelp" class="form-text">We'll never share your passwoad with anyone else.</div>
+      </div>
+
+      <div class="mb-3">
+        <label for="exampleInputNick" class="form-label">Nick address</label>
+        <input type="nick" class="form-control" id="join-nick" aria-describedby="nickHelp">
+        <div id="nickHelp" class="form-text">We'll never share your nick with anyone else.</div>
+      </div>
+      <div class = "right-div">
+        <button class="btn btn-success" id="join-btn">회원가입</button>
+        <button class="btn btn-success" id="join-cancle-btn">취소</button>
+      </div>
+    </form>
+  </div>
+{% endblock %}s
+
+{% block script %}
+  <script>
+    document.querySelector('#join-btn').addEventListener('click', function(e) {
+      e.preventDefault()
+      const email = document.querySelector('#join-email').value;
+      const nick = document.querySelector('#join-nick').value;
+      const password = document.querySelector('#join-password').value;
+
+      const data = { email, nick, password }
+      axios.post('/auth/join', data)
+        .then((data) => {
+          alert(`아이디를 생성 했습니다.
+           로그인 해주세요`);
+           location.href='/board';
+        })
+        .catch((err) => {
+          alert(`아이디 생성에 실패 했습니다. 
+          ${err.response.data}`)
+        })
+    })
+  </script>
+{% endblock %}

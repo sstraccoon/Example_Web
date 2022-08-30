@@ -1,0 +1,44 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+  <div class="login-wrap">
+    <form id="join-form" action="/auth/join" method="post">
+      <div class="mb-3">
+
+        <label for="exampleInputEmail1" class="form-label">Email address</label>
+        <input type="email" class="form-control" id="join-email" aria-describedby="emailHelp">
+        <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
+      </div>
+      <div class="mb-3">
+        <label for="exampleInputPassword" class="form-label">Password address</label>
+        <input type="password" class="form-control" id="join-password" aria-describedby="passwordHelp">
+        <div id="passwordHelp" class="form-text">We'll never share your passwoad with anyone else.</div>
+      </div>
+
+      <div class = "right-div">
+        <button class="btn btn-success" id="join-btn">로그인</button>
+        <button class="btn btn-success" id="join-cancle-btn">회원가입</button>
+      </div>
+    </form>
+  </div>
+{% endblock %}s
+
+{% block script %}
+  <script>
+    document.querySelector('#join-btn').addEventListener('click', function(e) {
+      e.preventDefault()
+      const email = document.querySelector('#join-email').value;
+      const password = document.querySelector('#join-password').value;
+
+      const data = { email, password }
+      axios.post('/auth/login', data)
+        .then((data) => {
+           location.href='/board';
+        })
+        .catch((err) => {
+          alert(`로그인에 실패 했습니다. 
+          ${err.response.data}`)
+        })
+    })
+  </script>
+{% endblock %}
