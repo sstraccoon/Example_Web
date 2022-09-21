@@ -1,4 +1,4 @@
-const { Board, User } = require('../models');
+const { Board, User, Comment } = require('../models');
 const controllerError = require('../error/controllerError');
 const sequelize = require('sequelize');
 const Op = sequelize.Op;
@@ -170,12 +170,30 @@ exports.deleteBoard = async (id) => {
     }
 };
 
-exports.getComment = async ()
+exports.getComment = async (boardId) => {
+    try {
+        const comments = await Comment.findAll({
+            attributes: ['id', 'content', 'createdAt', 'userId', 'boardId', 'originCommentId'],
+            where: { boardId },
+            order: [['createdAt', 'DESC']],
+            include:{
+                model: User,
+                attributes: ['nick'],
+            }
+        })
+        return comments;
+    } catch (err) {
+        console.error(err);
+        throw new controllerError("댓글 불러오기에 실패했습니다.");
+    }
+}
 
-exports.addComment = async (userId, boardId, comment) => {
+exports.addComment = async (userId, boardId, content) => {
     try {
         await Comment.create({
-            userId, boardId, content
+            content: content,
+            userId: userId,
+            boardId: boardId,
         });
         return;
     } catch (err) {

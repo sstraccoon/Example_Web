@@ -1,6 +1,7 @@
 const express = require('express');
+const controllerError = require('../error/controllerError');
 const { isLoggedIn, isNotLoggendIn, catchError } = require('./middlewares');
-const { getBoardAll, addBoard, getBoard, getWriter, getBoardsSearchedByTitle, getBoardsSearchedByContent, updateBoard, deleteBoard, increaseView, increaseLike, increaseHate, addComment, deleteComment } = require('../controllers/board');
+const { getBoardAll, addBoard, getBoard, getWriter, getBoardsSearchedByTitle, getBoardsSearchedByContent, updateBoard, deleteBoard, increaseView, increaseLike, increaseHate, addComment, deleteComment, getComment } = require('../controllers/board');
 
 
 const router = express.Router();
@@ -102,26 +103,32 @@ router.get('/search',  async (req, res, next) => {
     }
 });
 
-router.post('/write/comment', isLoggedIn, async (req, res, next) => {
+router.post('/comment', isLoggedIn, async (req, res, next) => {
     try {
-        isCheckWriter(req.user.id, req.body.boardId);
+        // board가 유효한 게시글인지 알아야 한다.
         const { boardId, content } = req.body;
-        await addComment(req.body.comment);
+        const isBoard = await getBoard(boardId);
+        if (!isBoard) {
+            throw new controllerError('존재하지 않는 게시글 입니다.');
+        }
+        isCheckWriter(req.user.id, req.body.boardId);
+        await addComment(req.user.id, boardId, content);
         res.status(200);
     } catch (err) {
         catchError(err, '게시글 종아요 등록에 실패 했습니다.', next);
     }
 });
 
-router.get('/comment', async (req, res, next) =>{
+router.get('/comment/:boardId', async (req, res, next) =>{
     try {
-        
+        const comments = await getComment(req.params.boardId);
+        res.status(200).json(comments);
     } catch (err) {
         catchError(err, '댓글 불러오기에 실패했습니다.', next);
     }
 })
 
-router.post('/delete/comment/:id', isLoggedIn, deleteComment, async (req, res, next) => {
+router.post('/comment/delete/:id', isLoggedIn, deleteComment, async (req, res, next) => {
     try {
         isCheckWriter(req.user.id, req.body.boardId);
         await deleteComment(req.params.id);

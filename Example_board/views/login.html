@@ -17,9 +17,10 @@
 
       <div class = "right-div">
         <button class="btn btn-success" id="join-btn">로그인</button>
-        <button class="btn btn-success" id="join-cancle-btn">회원가입</button>
+        
       </div>
     </form>
+    <button class="btn btn-success" onclick="location.href='/auth/join'" id="join-cancle-btn">회원가입</button>
   </div>
 {% endblock %}s
 
@@ -33,7 +34,7 @@
       const data = { email, password }
       axios.post('/auth/login', data)
         .then((data) => {
-           location.href='/board';
+          location.href='/board';
         })
         .catch((err) => {
           alert(`로그인에 실패 했습니다. 
