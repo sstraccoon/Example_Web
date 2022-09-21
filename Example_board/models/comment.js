@@ -3,7 +3,7 @@ const Sequelize = require('sequelize');
 module.exports = class Comment extends Sequelize.Model {
     static init(sequelize) {
         return super.init({
-            contemt: {
+            content: {
                 type: Sequelize.STRING(200),
                 allowNull: false,
             },
@@ -20,7 +20,7 @@ module.exports = class Comment extends Sequelize.Model {
     }
  
     static associate(db) {
-        // db.Comment.belongsTo(db.User);
+        db.Comment.belongsTo(db.User);
         // user 를 관계에 넣으면 에러 발생, UserId가 두개나 참조 된다는 문제
         // 이미 포스트에 유저 정보가 있어서 그런 듯
         db.Comment.belongsTo(db.Board);

@@ -3,7 +3,7 @@
 {% block content %}
     <input type="hidden" value="{{userId}}" id="userId">
     <input type="hidden" value="{{board.userId}}" id="writerId">
-    <!-- <input type="hidden" value="{{board.id}}" id="boardId"> -->
+    <input type="hidden" value="{{board.id}}" id="boardId">
     <div class="board">
         <span>id: </span>
         <label>{{board.id}}</label><br><br>
@@ -12,7 +12,7 @@
         <br>
         <br>
         <div class="side_data_warp">
-            date: {{board.createdAt}}k
+            date: {{board.createdAt}}
             <br>
             view: {{board.viewCount}} 
             <br>
@@ -34,6 +34,7 @@
             <button class="delete" id="board-delete-btn" onclick="location.href='/board/hate/{{board.id}}'">싫어요</button>
         </section>
 
+        {{user}}
         <div class="comment_warp">
             <div class="comment_input_warp">
                 <div class="comment_content">
@@ -44,9 +45,22 @@
                     <button class="comment_btn_cancel">cancel</button>
                 </div>
             </div>
+            
+            <!-- 현재 코멘드가 잘 안보여서 ㅇ -->
+            <div class="comments">
+                <p style="padding-top: 22px;">
+                    <a href="">
+                        <span>
+                            lee
+                        </span>
+                    </a>
+                    <span style="padding-left: 22px;">
+                        cotent
+                    </span>
+                </p>
+            </div>
         </div>
     </div>
-   
 {% endblock %}
 
 
@@ -54,40 +68,48 @@
     <script>
         const userId = document.querySelector('#userId').value;
         const writerId =  document.querySelector('#writerId').value;
+        const boardId =  document.querySelector('#boardId').value;
         const writerBtn = document.querySelector('.board_writer_btn');
+        const comment_input = document.querySelector('.comment_input_warp');
         writerBtn.style.visibility = "hidden";
+        comment_input.style.visibility = "hidden";
         if (userId) {
             if (userId == writerId) {
                 writerBtn.style.visibility = "visible";
             }
+            comment_input.style.visibility = "visible";
         }
 
         window.addEventListener('load', () => {
-            ajax.get('/board/comment')
-             .then((res) => {
-                makeComment(res.data);
-             })
-        })        
+            axios.get('/board/comment/'+boardId)
+            .then((res) => {
+                console.log(res.data);
+                // makeComment(res.data);
+            })
+            .catch((err) => {
+                alert(err);
+            })
+        });
 
         function makeComment(comments) {
-            if (res.data) {
+            if (comments) {
                 if (document.querySelector('.comments')) {
                     document.querySelector('.comment').remove();
                 }
                 let commentsElement = document.createElement('comments');
                 commentsElement.class = 'comments';
-                document.querySelector('comment_warp').appendChild(commentsElement);
+                document.querySelector('.comment_warp').appendChild(commentsElement);
 
                 for (var comment of comments) {
                     let p = document.createElement('p');
                     let a = document.createElement('a');
                     let userNick = document.createElement('span');
-                    userNick.value = comment.user.nick;
+                    userNick.value = comment.User.nick;
                     a.appendChild(userNick)
                     p.appendChild(a);
                     let content = document.createElement('spna');
                     content.value = comment.content;
-                    p.appendChild(comment);
+                    p.appendChild(content);
                     let date = document.createElement('span');
                     date.value = comment.date;
                     p.appendChild(date);
@@ -99,6 +121,19 @@
             }
         }
 
+        document.querySelector('.comment_btn_write').addEventListener('click', (e) => {
+            e.preventDefault();
+            const content = document.querySelector('#comment_inpud').value;
+            const data = { boardId, content };
+            axios.post('/board/comment', data)
+                .then((res) => {
+                    console.log(res.data);
+                    // makeComment(res.data);
+                })
+                .catch((err) => {
+                    alert(err);
+                })
+        })
         // document.querySelector('#board-update-btn').addEventListener('click', function(e) {
         //     e.preventDefault();
         //     const boardId = document.querySelector('#boardId');

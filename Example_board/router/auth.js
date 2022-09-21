@@ -12,8 +12,11 @@ router.get('/join', isNotLoggendIn, (req, res, next) => {
 
 router.post('/join', isNotLoggendIn, async (req, res, next) => {
     const { email, password, nick } = req.body;
+    if (email === undefined || password === undefined || nick === undefined) {
+        res.status(500).send({ message: '필수 정보를 입력하세요' });
+    }
     console.log('join _ router _ start');
-    const result = await addUser(email, password, nick);
+    const result = await addUser(email, password, nick);bn
     console.log('join _ router _ END');
     if (result == false) {
         res.status(404).send({ message: '계정 생성에 실패 했습니다.' });
