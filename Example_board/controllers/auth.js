@@ -1,30 +1,31 @@
 const User = require('../models/user');
 const bcrypt = require('bcrypt');
 const passport = require('passport');
+const controllerError = require('../error/controllerError');
 
 exports.addUser = async (email, password, nick) => {
     try {
-        console.log('join _ controller _ start');
-        const exUser = await User.findOne({ where: { email }});
-        if (exUser) {
-            return false;
-        } 
-        console.log('join _ controller _ find _ END');
         const hash = await bcrypt.hash(password, 12);
-        console.log('join _ controller _ hash _ END');
         await User.create({
             email,
             'password' : hash,
             nick
         });
-        console.log('join _ controller _ END');
         return true;
     } catch (err) {
-        console.log('join _ controller _ ERROR');
         console.error(err);
-        return next(err);
+        throw new controllerError('계정 추가에 실패했습니다.');
     }
 };
+
+exports.getUser = async (email) => {
+    try {
+        return await User.findOne({ where : { email }});
+    } catch (err) {
+        console.error(err);
+        throw new controllerError('유저 검색에 실팼습니다.');
+    }
+}
 
 /* 
 */

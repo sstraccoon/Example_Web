@@ -105,17 +105,21 @@ router.get('/search',  async (req, res, next) => {
 
 router.post('/comment', isLoggedIn, async (req, res, next) => {
     try {
-        // board가 유효한 게시글인지 알아야 한다.
-        const { boardId, content } = req.body;
-        const isBoard = await getBoard(boardId);
+         const isBoard = await getBoard(boardId);
         if (!isBoard) {
             throw new controllerError('존재하지 않는 게시글 입니다.');
         }
+        // board가 유효한 게시글인지 알아야 한다.
+        const { boardId, content } = req.body;
+        if (content == '' || content === undefined) {
+            return res.status(500).end('댓글이 비어 있습니다.')
+        }
+       
         isCheckWriter(req.user.id, req.body.boardId);
         await addComment(req.user.id, boardId, content);
         res.status(200);
     } catch (err) {
-        catchError(err, '게시글 종아요 등록에 실패 했습니다.', next);
+        catchError(err, '댓글 등록에 실패 했습니다.', next);
     }
 });
 

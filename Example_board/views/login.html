@@ -17,20 +17,22 @@
 
       <div class = "right-div">
         <button class="btn btn-success" id="join-btn">로그인</button>
-        
+        <button class="btn btn-success" id="join-cancle-btn">회원가입</button>
       </div>
     </form>
-    <button class="btn btn-success" onclick="location.href='/auth/join'" id="join-cancle-btn">회원가입</button>
   </div>
 {% endblock %}s
 
 {% block script %}
   <script>
+    document.querySelector('#join-cancle-btn').addEventListener('click', function(e) {
+      e.preventDefault();
+      location.href='/auth/join';
+    });
     document.querySelector('#join-btn').addEventListener('click', function(e) {
       e.preventDefault()
       const email = document.querySelector('#join-email').value;
       const password = document.querySelector('#join-password').value;
-
       const data = { email, password }
       axios.post('/auth/login', data)
         .then((data) => {

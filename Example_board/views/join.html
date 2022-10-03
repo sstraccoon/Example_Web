@@ -38,14 +38,15 @@
 
       const data = { email, nick, password }
       axios.post('/auth/join', data)
-        .then((data) => {
-          alert(`아이디를 생성 했습니다.
-           로그인 해주세요`);
-           location.href='/board';
+        .then((res) => {
+          console.log('아이디 생성에 성공!');
+          alert(`아이디를 생성 했습니다.로그인 해주세요`);
+          location.href='/board';
         })
         .catch((err) => {
-          alert(`아이디 생성에 실패 했습니다. 
-          ${err.response.data}`)
+          console.log('아이디 생성에 실패했습니다.')
+          alert(`아이디 생성에 실패 했습니다.
+          ${ err.response.data }`)
         })
     })
   </script>

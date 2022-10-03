@@ -124,14 +124,14 @@
         document.querySelector('.comment_btn_write').addEventListener('click', (e) => {
             e.preventDefault();
             const content = document.querySelector('#comment_inpud').value;
-            const data = { boardId, content };
+            const data = { boardId, content }; 
             axios.post('/board/comment', data)
                 .then((res) => {
-                    console.log(res.data);
+                    // 댓글 재 갱신 함수 필요.
                     // makeComment(res.data);
                 })
                 .catch((err) => {
-                    alert(err);
+                    alert(err.response.data);
                 })
         })
         // document.querySelector('#board-update-btn').addEventListener('click', function(e) {
