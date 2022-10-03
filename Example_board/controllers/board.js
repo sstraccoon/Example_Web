@@ -3,6 +3,24 @@ const controllerError = require('../error/controllerError');
 const sequelize = require('sequelize');
 const Op = sequelize.Op;
 
+
+// exports.getBoardAll = async () => {
+//     try {
+//         const boards = await Board.findAll({
+//             attributes: ['id', 'title', 'viewCount', 'likeCount', 'hateCount', 'createdAt'],
+//             order: [['createdAt', 'DESC']],
+//             include: {
+//                 model: User,
+//                 attributes: ['nick'],
+//             },
+//             offset: 1,
+//             limit: 5
+//         });
+//     } catch (err) {
+//         console.error(err);
+//         throw new controllerError('게시글 불러오기에 실패했습니다.');
+//     }
+// }
 exports.getBoardAll = async () => {
     try {
         const boards = await Board.findAll({
@@ -10,8 +28,11 @@ exports.getBoardAll = async () => {
             order: [['createdAt', 'DESC']],
             include: {
                 model: User,
-                attributes: ['nick'],    
-        }});
+                attributes: ['nick'],   
+            },
+            offset: 1,
+            limit: 4,
+    });
         return boards;
     } catch (err) {
         console.log(err);

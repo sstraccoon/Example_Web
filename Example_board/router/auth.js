@@ -1,9 +1,9 @@
 const express = require('express');
 const passport = require('passport');
-const { isLoggedIn, isNotLoggendIn } = require('./middlewares');
+const { isLoggedIn, isNotLoggendIn, catchError} = require('./middlewares');
 const User = require('../models/user');
-const { addUser, login, logOut } = require('../controllers/auth');
-
+const { addUser, getUser, login, logOut } = require('../controllers/auth');
+const controllerError = require('../error/controllerError');
 const router = express.Router();
 
 router.get('/join', isNotLoggendIn, (req, res, next) => {
@@ -11,17 +11,21 @@ router.get('/join', isNotLoggendIn, (req, res, next) => {
 });
 
 router.post('/join', isNotLoggendIn, async (req, res, next) => {
-    const { email, password, nick } = req.body;
-    if (email === undefined || password === undefined || nick === undefined) {
-        res.status(500).send({ message: '필수 정보를 입력하세요' });
+    try {
+        const { email, password, nick } = req.body;
+        if (email === undefined || password === undefined || nick === undefined) {
+            return res.status(500).send('필수 정보를 입력하세요');
+        }
+        const exUser = await getUser(email);
+        if (exUser) {
+            // throw new Error('이미 사용중인 email 입니다.');
+            return res.status(404).send('이미 사용 중인 email 입니다.');
+        }
+        await addUser(email, password, nick);
+        return res.status(200);
+    } catch (err) {
+        catchError(err, '회원 가입에 실패했습니다.', next);
     }
-    console.log('join _ router _ start');
-    const result = await addUser(email, password, nick);bn
-    console.log('join _ router _ END');
-    if (result == false) {
-        res.status(404).send({ message: '계정 생성에 실패 했습니다.' });
-    }
-    res.status(200);
 });
 
 router.get('/login', isNotLoggendIn, (reql, res, next) => {
@@ -31,12 +35,10 @@ router.get('/login', isNotLoggendIn, (reql, res, next) => {
 router.post('/login', isNotLoggendIn, (req, res, next) => {
     passport.authenticate('local', (authError, user, info) => {
         if (authError) {
-            console.error(authError);
-            return next(authError);
+            catchError(authError, '로그인에 실패했습니다.', next);
         }
         if (!user) {
             return res.status(402).send(info.message);
-            // return res.redirect(`/loginError=${info.message}`); 교제 보고 했을 때는  이렇게 처리 했음, 하지만 asiox로 처리 할 거니 주석 처리 및 수정
         }
         return req.login(user, (loginError) => {
             if (loginError) {
@@ -53,8 +55,6 @@ router.get('/logout', isLoggedIn, (req, res, next) => {
         if (err) {
           return next(err);
         }
-        // if you're using express-flash
-        // req.flash('success_msg', 'session terminated');
         res.redirect('/board');
       });
   });
