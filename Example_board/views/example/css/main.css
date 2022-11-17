@@ -1,0 +1,107 @@
+:root {
+    /* color */
+    --white-color: #fff;
+    --block-color: #140a00;
+    --blue-color: #045FD4;
+    --blue-dark-color: #263343;
+    --red-color: #ff0000;
+    --grey-dark-color: #909090;
+    --gray-light-color: #e0e0e0;
+    --orange-color: #d49466;
+    --green-color: #19ce60;
+
+    /* size */
+    --padding: 12px;
+    --header-padding: 12px 30px;
+    --li-padding: 8px 12px;
+    
+    /* font size */
+    --font-logo: 24px;
+    --font-lange: 18px;
+    --font-medium: 14px;
+    --font-small: 12px;
+    --font-micro: 10px;
+}
+
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+a {
+    text-decoration: none;
+}
+
+ul {
+    list-style: none;
+}
+
+header {
+    /* flex-wrap: nowrap; */
+    /* justify-content: flex-start; */
+}
+
+.navbar__header {
+    padding: 20px;
+    display: flex;
+    /* flex-wrap: inherit; */
+    align-items: center;
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+}
+
+.navbar__middle { 
+    display: flex;
+    flex-wrap: inherit;
+    align-items: center;
+    justify-content: space-between;
+    
+}
+
+header .navbar__menu {
+    /* display: flex;
+    flex-wrap: inherit;
+    align-items: center; */
+    /* align-items: center; */
+    /* justify-content: space-between; */
+}
+
+.navmar__home { 
+    /* padding-right: 10%; */
+}
+
+header a {
+    color: var(--block-color);
+}
+
+header .navbar__header__title {
+    display: flex!important;
+    flex-basis: auto;
+    flex-grow: 1;
+    align-items: center;
+    /* display: flex!important;
+    align-items: center;
+    flex-basis: auto; */
+    /* justify-content: space-between; */
+    /* flex-grow: 1; */
+}
+
+header .navbar__header__title > ul{
+    flex-direction: row;
+    display: flex;
+    /* display: flex;
+    justify-content: center;
+    margin: 0;
+    padding: 0; */
+}
+
+header .navbar__header__title > ul > li {
+    /* display: flex; */
+    /* justify-content: space-between; */
+    /* padding: var(--li-padding); */
+}
+
+.navbar__login {
+    display: flex!important;
+}

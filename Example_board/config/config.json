@@ -4,6 +4,7 @@
     "password": "admincute",
     "database": "example_board",
     "host": "127.0.0.1",
+    "dateStrings": "date",
     "dialect": "mysql"
   },
   "test": {
@@ -11,6 +12,7 @@
     "password": null,
     "database": "example_board_test",
     "host": "127.0.0.1",
+    "dateStrings": "date",
     "dialect": "mysql"
   },
   "production": {
@@ -18,6 +20,7 @@
     "password": null,
     "database": "database_production",
     "host": "127.0.0.1",
+    "dateStrings": "date",
     "dialect": "mysql"
   }
 }

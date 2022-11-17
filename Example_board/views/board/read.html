@@ -14,13 +14,13 @@
         <div class="side_data_warp">
             date: {{board.createdAt}}
             <br>
-            view: {{board.viewCount}} 
+            view: <span>{{board.viewCount}} </span> 
             <br>
-            like: {{board.likeCount}}
-            <button class="delete" id="board-delete-btn" onclick="location.href='/board/like/{{board.id}}'">좋아요</button>
+            like: <span id="like">{{board.likeCount}} </span> 
+            <button class="delete" id="board-like-btn" >좋아요</button>
             <br>
-            hate: {{board.hateCount}}
-            <button class="delete" id="board-delete-btn" onclick="location.href='/board/hate/{{board.id}}'">싫어요</button>
+            hate: <span id="hate">{{board.hateCount}} </span> 
+            <button class="delete" id="board-hate-btn" >싫어요</button>
         </div>
         <br>
         content : <br> <br>  {{board.content}}
@@ -28,10 +28,9 @@
         <br>
         <br>
         <section class="board_writer_btn">
-            <button class="update" id="board-update-btn" onclick="location.href='/board/update/{{board.id}}'">수정</button>
-            <button class="delete" id="board-delete-btn" onclick="location.href='/board/delete/{{board.id}}'">삭제</button>
-            <button class="delete" id="board-delete-btn" onclick="location.href='/board/like/{{board.id}}'">좋아요</button>
-            <button class="delete" id="board-delete-btn" onclick="location.href='/board/hate/{{board.id}}'">싫어요</button>
+            <button class="btn" id="board-update-btn" onclick="location.href='/board/update/{{board.id}}'">수정</button>
+            <button class="btn" id="board-delete-btn" onclick="location.href='/board/delete/{{board.id}}'">삭제</button>
+
         </section>
 
         {{user}}
@@ -44,20 +43,6 @@
                     <button class="comment_btn_write">write</button>
                     <button class="comment_btn_cancel">cancel</button>
                 </div>
-            </div>
-            
-            <!-- 현재 코멘드가 잘 안보여서 ㅇ -->
-            <div class="comments">
-                <p style="padding-top: 22px;">
-                    <a href="">
-                        <span>
-                            lee
-                        </span>
-                    </a>
-                    <span style="padding-left: 22px;">
-                        cotent
-                    </span>
-                </p>
             </div>
         </div>
     </div>
@@ -83,8 +68,7 @@
         window.addEventListener('load', () => {
             axios.get('/board/comment/'+boardId)
             .then((res) => {
-                console.log(res.data);
-                // makeComment(res.data);
+                makeComment(res.data);
             })
             .catch((err) => {
                 alert(err);
@@ -94,27 +78,34 @@
         function makeComment(comments) {
             if (comments) {
                 if (document.querySelector('.comments')) {
-                    document.querySelector('.comment').remove();
+                    document.querySelector('.comments').remove();
                 }
                 let commentsElement = document.createElement('comments');
-                commentsElement.class = 'comments';
+                commentsElement.className = 'comments';
                 document.querySelector('.comment_warp').appendChild(commentsElement);
 
                 for (var comment of comments) {
                     let p = document.createElement('p');
                     let a = document.createElement('a');
                     let userNick = document.createElement('span');
-                    userNick.value = comment.User.nick;
+                    userNick.textContent = comment.User.nick;
                     a.appendChild(userNick)
                     p.appendChild(a);
+                    let commentId = document.createElement('input');
+                    commentId.value = comment.id;
+                    commentId.type = 'hidden';
+                    p.appendChild(commentId);
                     let content = document.createElement('spna');
-                    content.value = comment.content;
+                    content.textContent = comment.content;
                     p.appendChild(content);
                     let date = document.createElement('span');
-                    date.value = comment.date;
+                    date.textContent = comment.createdAt;
                     p.appendChild(date);
                     let deleteBtn = document.createElement('button');
-                    deleteBtn.value = 'X';
+                    deleteBtn.textContent = 'X';
+                    deleteBtn.onclick = () => {
+                        deleteComment(commentId.value);   
+                    }
                     p.appendChild(deleteBtn);
                     commentsElement.appendChild(p);
                 }
@@ -128,18 +119,73 @@
             axios.post('/board/comment', data)
                 .then((res) => {
                     // 댓글 재 갱신 함수 필요.
-                    // makeComment(res.data);
+                    document.querySelector('#comment_inpud').value = '';
+                    makeComment(res.data);
                 })
                 .catch((err) => {
                     alert(err.response.data);
                 })
+        })
+
+        document.querySelector('.comment_btn_cancel').addEventListener('click', (e) => {
+            e.preventDefault();
+            document.querySelector('#comment_inpud').value = '';
+        })
+
+        function deleteComment(id) {
+            const boardId =  document.querySelector('#boardId').value;
+            const data = { boardId, id };
+
+            axios.post('/board/comment/delete', data)
+            .then((res) => {
+                makeComment(res.data);
+            })
+            .catch((err) => {
+                console.log(err);
+                alert(err.response.data)
+            }) 
+        }
+
+        document.querySelector('#board-like-btn').addEventListener('click',  () => {
+            const userId = document.querySelector('#userId').value
+            const boardId = document.querySelector('#boardId').value
+            const writerId = document.querySelector('#writerId').value
+
+            if (userId === writerId) {
+                alert('작성자 본인의 글에 좋아요를 누를수 없습니다.')
+            }
+            
+             axios.get('/board/like/' + boardId)
+            .then((res) => {
+                document.querySelector('#like').textContent = res.data;
+            })
+            .catch((err) => {
+                alert(err.response.data);
+            })
+        })
+        document.querySelector('#board-hate-btn').addEventListener('click', () => {
+            const userId = document.querySelector('#userId').value
+            const boardId = document.querySelector('#boardId').value
+            const writerId = document.querySelector('#writerId').value
+
+            if (userId === writerId) {
+                alert('작성자 본인의 글에 좋아요를 누를수 없습니다.')
+            }
+
+             axios.get('/board/hate/'+boardId)
+            .then((res) => {
+                document.querySelector('#hate').textContent = res.data;
+            })
+            .catch((err) => {
+                alert(err.response.data);
+            })
         })
         // document.querySelector('#board-update-btn').addEventListener('click', function(e) {
         //     e.preventDefault();
         //     const boardId = document.querySelector('#boardId');
         //     const data = { title, content };
         //     axios.get(`/board/update/:`+ boardId)
-        //         .then((data) => {
+        //         .then((data) => {;.
         //             location.href='/board';
         //         })
         //         .catch((err) => {       
