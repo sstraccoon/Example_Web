@@ -89,7 +89,6 @@ header .navbar__menu ul li a:hover {
 
 
 /* login */
-
 header .navbar__login {
     display: flex;
     align-items: center;
@@ -100,4 +99,12 @@ header .navbar__login button {
     padding: var(--li-padding);
     background-color: var(--green-color);
     color: var(--white-color);
+}
+
+/* paging */
+#paging { 
+    background-color: #19ce60;
+    /* display: flex; */
+    /* align-items: center; */
+    /* justify-items: center; */
 }

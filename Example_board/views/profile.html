@@ -1,0 +1,39 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+  <div class="profile">
+    <!-- <div> -->
+      <!-- <input type="hidden" id="userId" value="{{user.id}}"/> -->
+    <!-- </div> -->
+    <div>
+      <span>ID : </span>
+      <span>{{user.nick}}</span>
+    </div>
+    <div>
+      <span>Nick : </span>
+      <span>{{user.nick}}</span>
+    </div>
+    <div>
+      <span>생성 : </span>
+      <span>{{user.createdAt}}</span>
+    </div>
+    <div>
+      <span>grade : </span>
+      <span></span>
+    </div>
+    <div>
+      <span>작성 게시글 : </span>
+      <span>{{user.boards.length}}</span>
+    </div>
+    <div>
+      <span>작성 댓글 : </span>
+      <span>{{user.Comments.length}}</span>
+    </div>
+  </div>
+{% endblock %}
+
+{% block script %}
+  <script>
+
+  </script>
+{% endblock %}

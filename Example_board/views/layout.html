@@ -44,8 +44,12 @@
               </li>
             </ul>
             <div class="d-flex">
+              {% if not user %}
               <button class="btn btn-success" onclick="location.href='/auth/Login'">Login</button>
+              {% else %}
+              <a class="" href="/profile">{{user.nick}} 님 안녕하세요</a>
               <button class="btn btn-success" onclick="location.href='/auth/Logout'">Logout</button>
+              {% endif %}
             </div>
           </div>
         </div>
@@ -57,7 +61,11 @@
         {% endblock %}
       </div>
 
+      
+      <br>
+
       <footer class="footer-line">
+        
         <div>
           여기는 아래
         </div>
@@ -120,6 +128,7 @@
     -->
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
+    <script src="https://kit.fontawesome.com/b593be6e34.js" crossorigin="anonymous"></script>
     {% block script %}
     {% endblock %} 
   
