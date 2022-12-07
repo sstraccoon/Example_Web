@@ -1,0 +1,172 @@
+:root {
+    /* color */
+    --white-color: #fff;
+    --block-color: #140a00;
+    --blue-color: #045FD4;
+    --blue-dark-color: #263343;
+    --red-color: #ff0000;
+    --grey-dark-color: #909090;
+    --gray-light-color: #e0e0e0;
+    --orange-color: #d49466;
+    --green-color: #19ce60;
+
+    /* size */
+    --padding: 12px;
+    --header-padding: 12px 30px;
+    --li-padding: 8px 12px;
+
+    /* board size */
+    --board-id: 30px;
+    --board-title: 300px;
+    --board-writer: 100px;
+    --board-count: 100px;
+    --board-create: 120px;
+    
+    /* font size */
+    --font-logo: 24px;
+    --font-lange: 18px;
+    --font-medium: 14px;
+    --font-small: 12px;
+    --font-micro: 10px;
+
+    /* valueable */
+    --backgound-color: var(var(--white-color));
+}
+
+*{ box-sizing: border-box; } /*뭔지 모름*/
+html, body { 
+    margin: 0; 
+    padding: 0; 
+    height: 100%;   
+    box-sizing: border-box; 
+}
+
+a {
+    text-decoration: none;
+}
+
+ul {
+    list-style: none;
+}
+
+/*버튼에 대해서 생각 중*/
+.bbtn {
+    display: inline-block;
+    padding: 0 5px;
+    text-decoration: none;
+    cursor: pointer;
+    border-radius: 4px;
+    background: white;
+    border: 1px solid silver;
+    color: crimson;
+    height: 37px;
+    line-height: 37px;
+    vertical-align: top;
+    font-size: 12px;
+}
+
+.page_btn {
+    border: 0;
+    outline: 0;
+    background-color: var(--background-color);
+}
+
+/* header */
+
+.header-line {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 20px;
+}
+
+.menu-line li{
+    /* display: block; */
+    list-style-type: none; float: left;
+    padding-left: 5px;
+    padding-right: 5px;
+    background-color: aqua;
+}
+
+.login {
+    display: flex;
+    justify-content: flex-end;
+    align-content: center;
+    
+    /* padding-bottom: 40px; */
+}
+
+/* body */
+.main-content {
+    display: flex;
+    justify-content: center;
+    padding-top: 20px; 
+    width: 100%;
+    height: 800px;
+}
+
+/* board */
+.board {
+    text-align: center;
+    /* padding-right: 10px; */
+    /* border-right: solid slategrey; */
+}
+
+.board td.board_title {
+    text-align: left;
+}
+
+.board .board_id {
+    width: var(--board-id);
+}
+
+.board .board_title {
+    width: var(--board-title);
+}
+
+.board_writer {
+    width: var(--board-writer);
+}
+
+.board .board_count {
+    width: var(--board-count);
+}
+
+.board .board_created {
+    width: var(--board-create);
+}
+
+/* pageing */
+#paging {
+    padding-top: 30px;
+}
+
+/* search */
+.search {
+    display: flex;
+    justify-content: center;
+    padding-top: 20px;
+}
+
+/* footer */
+.footer-line {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding-top: 20px; 
+}
+
+.button {
+    /* border: none; */
+    border-radius: 6px;
+}
+
+/* paging */
+#paging { 
+    /* background-color: #19ce60; */
+    /* width: 100%; */
+    /* display: flex; */
+    text-align: center;
+    /* align-items: center; */
+    /* justify-items: center; */
+}

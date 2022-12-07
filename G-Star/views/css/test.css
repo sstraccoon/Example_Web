@@ -1,0 +1,252 @@
+:root {
+    /* color */
+    --white-color: #fff;
+    --block-color: #140a00;
+    --blue-color: #045FD4;
+    --blue-dark-color: #263343;
+    --red-color: #ff0000;
+    --grey-dark-color: #909090;
+    --gray-light-color: #e0e0e0;
+    --orange-color: #d49466;
+    --green-color: #19ce60;
+
+    /* size */
+    --padding: 12px;
+    --avatar-size : 36px;
+    --header-padding: 12px 30px;
+    --li-padding: 8px 12px;
+    
+    /* font size */
+    --font-logo: 24px;
+    --font-lange: 18px;
+    --font-medium: 14px;
+    --font-small: 12px;
+    --font-micro: 10px;
+}
+
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Roboto;
+}
+
+ul {
+    list-style: none;
+}
+
+button,
+button:focus {
+    border: none;
+    cursor: pointer;
+    outline: none;
+}
+
+
+/* Header */
+header {
+    display: flex;
+    justify-content: space-between;
+    padding: var(--padding);
+    background-color: var(--block-color);
+    color: var(--white-color);
+}
+
+header .logo {
+    font-size: var(--font-logo);
+}
+
+header .logo i {
+    color: var(--red-color);
+}
+
+header .icons .fa-search {
+    margin-right: var(--padding);
+}
+
+/* Video Player */
+.player {
+    position: sticky;
+    top: 0;
+    text-align: center;
+    background-color: var(--block-color);
+}
+
+.player video {
+    width: 100%;
+    height: 100%;
+    max-width: 1000px;
+}
+
+/* Video Info */
+body > .info {
+    padding: var(--padding);
+}
+
+.info .metadata .hashtags {
+    display: flex;
+    font-size: var(--font-small);
+    color: var(--blue-color);
+}
+
+.info .metadata .hashtags li {
+    margin-right: var(--padding);
+}
+
+.info .metadata .titleAndButton {
+    display: flex;
+}
+
+.info .metadata .titleAndButton .title {
+    font-size: var(--font-medium);
+    margin-right: var(--padding);
+}
+
+.info .metadata .titleAndButton .title.clamp{ 
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    overflow: hidden;
+}
+
+.info .metadata .titleAndButton .moreBtn{
+    /* height 를 지정 안하면 moreBtn 부모의 크기를 다 가져서 100%해준 듯 하다, 해주면 되러 작아짐 */
+    height: 100%;   
+    transition: transform 300ms ease-in-out;
+}
+
+.info .metadata .titleAndButton .moreBtn.clicked{
+    transform: rotate(180deg);
+}
+
+.info .views {
+    font-size: var(--font-samll);
+    color: var(--grey-dark-color);
+}
+
+/* Action Buttons */
+
+.info .actions {
+    display: flex;
+    justify-content: space-around;
+}
+
+.info .actions button {
+    display: flex;
+    flex-direction: column;
+    font-size: var(--font-small);
+}
+
+.info .actions button i {
+    margin: 0 auto;
+    margin-bottom: calc(var(--padding) / 2);
+    font-size: 16px;
+}
+
+.info .actions button i.active {
+    color: var(--blue-color);
+}
+
+/* Channel Desciption  */
+
+.channel {
+    display: flex;
+    justify-content: space-between;
+    border-top: 1px solid var(--gray-light-color);
+    border-bottom: 1px solid var(--gray-light-color);
+}
+
+.channel .metadata {
+    display: flex;
+    align-items: center;
+}
+
+.channel .metadata .info {
+    display: flex;
+    flex-direction: column;
+}
+
+.channel .metadata img {
+    width: var(--avatar-size);
+    height: var(--avatar-size);
+    border-radius: 50%;
+}
+
+.channel .metadata .info .name {
+    font-size: var(--font-medium);
+}
+
+.channel .metadata .info .subscribers {
+    font-size: var(--font-small);
+    color: var(--grey-dark-color);
+}
+
+.channel .subscribers {
+    text-transform: uppercase;
+    columns: var(--red-color);
+    font-size: var(--font-medium);
+}
+
+/* Up Next */
+
+.UpNext {
+    padding: 0 var(--padding);
+}
+
+.UpNext > .title {
+    font-size: var(--font-medium);
+    columns: var(--grey-dark-color);
+    margin-bottom: calc(var(--padding) / 2);
+}
+
+.UpNext .item {
+    display: flex;
+    margin-top: var(--padding);
+}
+
+.UpNext .item .img {
+    flex: 1 1 35%;
+    margin-right: var(--padding);
+}
+
+.UpNext .item .img img{
+    width: 100%;
+}
+
+.UpNext .item .ingo {
+    flex: 1 1 60%;
+}
+
+.UpNext .item .moreBtn {
+    flex: 1 1 5%;
+}
+
+.UpNext .item .info {
+    display: flex;
+    flex-direction: column;
+}
+
+.UpNext .item .info .title {
+    font-size: var(--font-small);
+}
+
+.UpNext .item .info .name,
+.UpNext .item .info .views {
+    font-size: var(--font-micro);
+    color: var(--grey-dark-color)
+}
+
+.infoAndUpNext {
+    display: flex;
+    flex-direction: column;
+}
+
+@media screen and (min-width: 768px) {
+    .infoAndUpNext {
+        flex-direction: row;
+        margin: var(--padding) 0;
+    }
+}

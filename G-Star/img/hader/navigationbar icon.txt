@@ -1,0 +1,32 @@
+engligh
+<i class="fas fa-exchange-alt txt08rem marR05"></i>
+
+
+g-star
+<i class="fas fa-star width30px forMobileI"></i>
+
+participation
+<i class="fas fa-address-book width30px forMobileI"></i>
+
+Live Biz Matching
+<i class="fas fa-chart-pie width30px forMobileI"></i>
+
+CONFERENCE
+<i class="fab fa-black-tie width30px forMobileI"></i>
+
+NEWS&MEDIA
+<i class="fas fa-bullhorn width30px forMobileI"></i>
+
+
+
+
+--바닥
+
+예매 확인 로그인
+<i class="fas fa-ticket-alt"></i>
+
+SIGN IN
+<i class="fas fa-sign-in-alt marB05"></i>
+
+SIGN UP
+<i class="far fa-user marB05"></i>
