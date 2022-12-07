@@ -1,0 +1,233 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+    <link rel="stylesheet" href="/css/main/main.css">
+
+    <div class="content">
+        <!-- 메인 비디오 -->
+        <section class="main-video-section">
+            <div>
+                <iframe width="560" height="315" src="https://www.youtube.com/embed/ZqI2SAL6glk" title="YouTube video player" frameborder="0" ></iframe>
+            </div>
+            <div class="video-link">
+                
+                <a class="gstartv-link" href="">지스타TV 보러가기</a>
+                <a href="">
+                    <img src="/img/main/twitch-logo.png" alt="">
+                </a>
+            </div>
+        </section>
+
+        <!-- 메인 배너 -->
+        <div class="banner-section">
+            <img src="/img/main/main-mid-banner.jpg" alt="">
+        </div>
+
+        <!-- 메인 NEWS -->
+        <section class="news-section">
+            <div class="wrap">
+                <div class="title">
+                    <img src="/img/main/news-icon.png" alt="">
+                    <a href="">
+                        <i class="fas fa-plus">더보기</i>
+                    </a>
+                </div>
+                <ul class="news-list">
+                    <li class="news-content">
+                        <!-- 모두 링크 위치는 같음 -->
+                        <a href="#" class="news-img"><img src="/img/main/news/game-jab-contest.jpg" alt=""></a>
+                        <a href="#" class="news-title">
+                            [공지] [2022] 게임잡콘서트 in G-STAR 안내
+                        </a>
+                        <a href="#" class="news-body">
+                            안녕하세요, 
+                            게임잡콘서트 in G-STAR가 11월 19일(토) 벡스코 컨벤션홀 2층 Summit Hall에서 진행됩니다.
+                            메인 무대프로그램과 다양한 체험, 컨설팅 프로그램이 준비되어 있으니, 많은 관심 부탁드립니다.
+                            ※ 지스타 2022참관객과 일반 구직자 모두 행사 참여가 가능합니다. 
+                        </a>
+                    </li>
+                    <li class="news-content">
+                        <!-- 모두 링크 위치는 같음 -->
+                        <a href="#" class="news-img"><img src="/img/main/news/game-jab-contest.jpg" alt=""></a>
+                        <a href="#" class="news-title">
+                            [공지] [2022] 지스타 TV 편성표 공개
+                        </a>
+                        <a href="#" class="news-body">
+                            2022 지스타 TV의방송 편성표를 공개합니다!
+                            지스타 TV는 지스타 홈페이지 뿐만 아니라 트위치에서도 시청이 가능합니다.
+                            ▶ 트위치 :https://www.twitch.tv/gstar
+                        </a>
+                    </li>
+
+                    <li class="news-content">
+                        <!-- 모두 링크 위치는 같음 -->
+                        <a href="#" class="news-img"><img src="/img/main/news/BTC-application.jpg" alt=""></a>
+                        <a href="#" class="news-title">
+                            [공지] [2022][중요] 현장 입장권 판매 계획
+                        </a>
+                        <a href="#" class="news-body">
+                            안녕하세요,
+                            지스타 2022 현장 입장권 판매 정책 안내드립니다.
+                            참관객의 안전한 전시장 관람을 위해 현장 입장권 판매는 사전 온라인 예매자 손목띠 교환시간과 구분됩니다.
+                            * 현장 입장권 판매 작 시간 : 매일 12:00 (11/17~20)
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- 메인 참가사 배너 -->
+        <section class="exhibitor-section">
+            <div class="wrap">
+                <div class="title">
+                    <img src="/img/main/exhibitor-icon.png" alt="">
+                    <a href="">
+                        <i class="fas fa-plus">더보기</i>
+                    </a>
+                </div>
+                    <input type="radio" name="exhibitor-radio" id="slide-1" >
+                    <input type="radio" name="exhibitor-radio" id="slide-2" checked>
+                    <input type="radio" name="exhibitor-radio" id="slide-3">
+                <div class="sliderwrap">
+                    
+                    <div class="slide-remote-wrap">
+                        <label class="slide-remocon" for="slide-1"></label>
+                        <label class="slide-remocon" for="slide-2"></label>
+                        <label class="slide-remocon" for="slide-3"></label>
+                    </div>
+                    
+                    <ul class="slidelist">
+                        <li>
+                            <ul>
+                                <div>
+                                    <img class="slide" src="/img/main/sider-exhibitor/G-STAR Exhibitor 01.jpg" alt="">
+                                </div>
+                                <div>
+                                    <img class="slide" src="/img/main/sider-exhibitor/G-STAR Exhibitor 02.jpg" alt="">
+                                </div>
+                                <div>
+                                    <img class="slide" src="/img/main/sider-exhibitor/G-STAR Exhibitor 03.jpg" alt="">
+                                </div>
+                                <div>
+                                    <img class="slide" src="/img/main/sider-exhibitor/G-STAR Exhibitor 04.jpg" alt="">
+                                </div>
+                            </ul>
+                        </li>
+    
+                        <li>
+                            <ul>
+                                <div>
+                                    <img class="slide" src="/img/main/sider-exhibitor/G-STAR Exhibitor 05.png" alt="">
+                                </div>
+                                <div>
+                                    <img class="slide" src="/img/main/sider-exhibitor/G-STAR Exhibitor 06.png" alt="">
+                                </div>
+                                <div>
+                                    <img class="slide" src="/img/main/sider-exhibitor/G-STAR Exhibitor 07.png" alt="">
+                                </div>
+                                <div>
+                                    <img class="slide" src="/img/main/sider-exhibitor/G-STAR Exhibitor 08.png" alt="">
+                                </div>
+                            </ul>
+                        </li>
+    
+                        <li>
+                            <ul>
+                                <div>
+                                    <img class="slide" src="/img/main/sider-exhibitor/G-STAR Exhibitor 09.jpg" alt="">
+                                </div>
+                                <div>
+                                    <img class="slide" src="/img/main/sider-exhibitor/G-STAR Exhibitor 10.png" alt="">
+                                </div>
+                                <div>
+                                    <img class="slide" src="/img/main/sider-exhibitor/G-STAR Exhibitor 11.png" alt="">
+                                </div>
+                            </ul>
+                        </li>
+                    </ul>
+    
+                </div>
+
+            </div>
+        </section>
+
+        <section class="video-section">
+            <div class="wrap">
+                <div class="title">
+                    <img src="/img/main/videos-icon.png" alt="">
+                    <a href="">
+                        <i class="fas fa-plus">더보기</i>
+                    </a>
+                </div>
+                <ul class="video-list">
+                    <li class="video-content">
+                        <!-- 모두 링크 위치는 같음 -->
+                        <iframe src="https://www.youtube.com/embed/lrPPrfACPbo" title="YouTube video player" frameborder="0" ></iframe>
+                        <p class="video-title"> 
+                            [G-STAR 2022] Thank You!
+                        </p>
+                       
+                    </li>
+                    <li class="video-content">
+                        <!-- 모두 링크 위치는 같음 -->
+                        <iframe src="https://www.youtube.com/embed/AamrxriceAQ" title="YouTube video player" frameborder="0" ></iframe>
+                        <p class="video-title">
+                            [G-STAR 2022] DAY 4
+                        </p>
+                       
+                    </li>
+
+                    <li class="video-content">
+                        <!-- 모두 링크 위치는 같음 -->
+                        <!-- <a href="#" class="news-img"><img src="/img/main/news/BTC-application.jpg" alt=""></a> -->
+                        <iframe src="https://www.youtube.com/embed/9aqA1TIwRPc" title="YouTube video player" frameborder="0" ></iframe>
+                        <p class="video-title">
+                            [G-STAR 2022] DAY 3
+                        </p> 
+                       
+                    </li>
+                </ul>
+            </div>
+
+        </section>
+
+        <!-- 메인 SNS -->
+        <section class="sns-section">
+            <div class="wrap">
+                <div class="title">
+                    <img src="/img/main/sns-icon.png" alt="">
+                    <a href="">
+                        <i class="fas fa-plus">더보기</i>
+                    </a>    
+                </div>
+            </div>
+        </section>
+    </div>
+
+    
+    {{img}}
+    
+    <script>
+
+        function main() {
+            console.log('확인용');
+            console.log(img)
+            exhibitorDraw();
+            setTimeout(() => {
+                
+            })
+        }
+        
+        function exhibitorDraw () {
+            console.log('main');
+            //폴더 이미지 개수 받아오기.
+            axios.get('/main/exhibitor')
+            .then((res) => {
+                console.log(res.data);
+            })
+            .catch ((err) => {
+            })
+        }
+    </script>
+
+{% endblock %} 

@@ -1,0 +1,218 @@
+:root {
+    /* color */
+    --white-color: #fff;
+    --block-color: #140a00;
+    --blue-color: #045FD4;
+    --blue-dark-color: #263343;
+    --red-color: #ff0000;
+    --grey-dark-color: #909090;
+    --gray-light-color: #e0e0e0;
+    --orange-color: #d49466;
+    --green-color: #19ce60;
+
+    /* size */
+    --padding: 12px;
+    --header-padding: 12px 30px;
+    --li-padding: 8px 12px;
+    --nav-pading: 24px 40px;
+
+    --nav-menu-width: 168px;
+    --nav-menu-height: 70px;
+    
+    --dropdown-padding: 5px 15px;
+    
+    /* font size */
+    --font-logo: 24px;
+    --font-lange: 18px;
+    --font-medium: 14px;
+    --font-small: 12px;
+    --font-micro: 10px;
+    --font-header-nav-bar: 1.1rem;
+}
+
+* {
+    padding: 0;
+    margin: 0;
+    /* 박스를 만들때 패딩이나 마진을 줬을때 그것을 포함되어서 사이즈가 결정 됨 */
+    box-sizing: border-box; 
+}
+
+a {
+    text-decoration: none;
+    color: black;
+}
+
+ul {
+    list-style: none;
+    padding: 0;
+}
+
+.header-top {
+    height: 25px;
+}
+
+header .header-top {   
+    display: flex;
+    justify-content: space-between;
+}
+
+header .header-logo {
+    width: 100%;
+    height: 96px;
+    display: flex;
+    justify-content: center;
+}
+
+header .header-logo img {
+    height: 75px;
+}
+
+/* navigation bar */
+
+header .header-navbar {
+    height: 70px;
+    display: flex;
+    justify-content: center;
+}
+
+.dropdown {
+    display: flex;
+    align-items: center; 
+    height: 70px;
+    padding: 0;
+    margin: 0;
+}
+
+.dropdown .dropdown-block:hover {
+    background-color: #333;
+}
+
+.dropdown .dropdown-block:hover > a{
+    color: var(--white-color);
+}
+
+.dropdown li {
+    display: inline-block;
+}
+
+.dropdown-title {
+    padding: var(--nav-pading);
+    display: flex;
+    justify-content: center;
+    align-items: center; 
+    font-family: 'Font Awesome 5 Free';
+    font-weight: bold;
+}
+
+.dropdown-title span{
+    margin: 0 16px;
+}
+
+
+.dropdown-content {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+}
+
+.dropdown-content:hover {
+    display: flex;
+    flex-direction: column;
+}
+
+/* .dropdown-content > a{
+    color: var(--block-color);
+    text-decoration: none;
+    display: block;
+    padding: 10px;
+} */
+
+.dropdown-title ~ .dropdown-content {
+    display: none;
+}
+.dropdown-title:hover ~ .dropdown-content {
+    /* background-color: #ddd; */
+    display: flex;
+}
+
+.dropdown-title:hover ~ .dropdown-content {
+    /* background-color: #ddd; */
+    display: flex;
+}
+
+.dropdown-content:hover{
+    display: flex;
+}
+
+.dropdown .dropdown-content > a {
+    border-bottom: 1px dotted #ccc;
+}
+
+.dropdown .dropdown-content > div {
+    border-bottom: 1px dotted #ccc;
+}
+
+.dropdown .dropdown-block {
+    position: relative;
+}
+
+.dropdown .dropdown-content {
+    width: 100%;
+    background-color: var(--white-color);
+    position: absolute;
+}
+
+.dropdown .dropdown-content .dropdown-sub-title {
+    width: 100%;
+    display: flex;
+    justify-items: space-between;
+    background-color: var(--white-color);
+}
+
+.dropdown .dropdown-content .dropdown-sub-title > li{
+    font-weight: bold;
+    text-decoration: none;
+    display: block;
+    padding: 10px;
+}
+
+.dropdown .dropdown-content .dropdown-sub-title > li:hover{
+    color:#045FD4;
+}
+
+
+.dropdown .dropdown-content .dropdown-depth .dropdown-sub-title{
+    display: flex;
+    align-items: center;
+    border: none;
+}
+
+.dropdown .dropdown-content .dropdown-depth .dropdown-sub-title i{
+    display: flex;
+    align-items: center;
+    border: none;
+    transition: transform 300ms ease-in-out;
+}
+
+.dropdown .dropdown-content .dropdown-depth .dropdown-sub-title.clicked i{
+    transition: transform 300ms ease-in-out;
+    transform: rotate(180deg);
+}
+
+.dropdown .dropdown-content .dropdown-depth-content.clamp {
+    display: none
+}
+
+.dropdown .dropdown-content .dropdown-depth-content {
+    display: flex;
+    flex-direction: column;
+}
+
+.dropdown .dropdown-content .dropdown-depth-content a{
+    padding: 8px 20px;
+}
+
+.dropdown:hover .drop-btn {
+    background-color: #3e8e41;
+}
+
