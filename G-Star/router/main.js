@@ -5,7 +5,7 @@ const getHtml = require('../public/crawling/instagram');
 const dir  = process.cwd() + '/G-Star/public/img/main/sider-exhibitor';
 
 router.get("/", async (req, res, next) => {
-    getHtml();
+    // getHtml();
     const img = fs.readdirSync(dir);
     res.render("main", {img});
 });
