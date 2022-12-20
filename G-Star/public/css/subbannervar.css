@@ -1,0 +1,25 @@
+.sub-topbanner {
+    width: 100%;    
+    height: 295px;
+    background: center center no-repeat;
+}
+
+nav.sub-centerMenu {
+    padding: 8px 0px;
+    width: 100%;
+    border-bottom: 1px solid #d5d5d5;
+    text-align: center;
+}
+
+a:hover{
+    color: black;
+}
+
+nav.sub-centerMenu a :hover{
+    /* padding: 30px; */
+}
+
+nav.sub-centerMenu a span{ 
+    padding-left: 30px;
+    color: #666;
+}

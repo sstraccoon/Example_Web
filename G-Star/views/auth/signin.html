@@ -1,0 +1,30 @@
+{% extends '../subtitle.html' %}
+
+{% block mainContent %}
+
+<link rel="stylesheet" href="/css/auth/signin.css">
+
+<section class="content">
+    <div class="login-wrap">
+        <div class="welcome">
+            <p>G-STAR에 오신걸 환영합니다.</p>
+        </div>
+       <table>
+           <tbody>
+               <tr>
+                   <th scope="row">아이디</th>
+                   <td> <input type="text" class="form-text" name="mem_id" id="mem_id"></td>
+               </tr>
+               <tr>
+                   <th scope="row">비밀번호</th>
+                   <td> <input type="password" class="form-text" name="mem_pwd" id="mem_pwd"></td>
+               </tr>
+           </tbody>
+       </table>
+       <div class="button-wrap">
+            <a href="#">회원가입 ></a>
+            <a href="#">아이디/비밀번호 찾기 ></a>
+       </div>
+</section>
+
+{% endblock %}

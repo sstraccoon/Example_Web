@@ -1,0 +1,32 @@
+{% extends 'layout.html' %}
+
+
+{% block content %}
+<link rel="stylesheet" href="/css/subbannervar.css">
+
+<section class="sub-topbanner" style="background: url(/img/banner/{{subTopBanner}}.jpeg) center center no-repeat;">
+
+</section>
+
+<nav class="sub-centerMenu">
+    <div class="wrap">
+        <a href="/">
+            <i class="fas fa-home"></i>
+        </a>
+        {% for name, item in path %}
+            <a href="{{item}}" class="">
+                <span>
+                    >
+                </span>
+                <span>
+                    {{name}}
+                </span>
+            </a>
+        {% endfor %}
+    </div>
+</nav>
+
+{% block subtitle %}
+{% endblock %}
+
+{% endblock %}

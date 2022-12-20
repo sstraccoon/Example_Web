@@ -1,0 +1,64 @@
+section.content{
+    padding-top: 30px;
+}
+section.content div.login-wrap{
+    text-align: center;
+}
+
+section.content div.login-wrap table{
+    margin: auto;
+    border-top: royalblue solid 2px;
+}
+
+section.content div.login-wrap table tr{
+    border-bottom: solid 1px black;
+}
+
+section.content div.login-wrap table th{
+    background: #f8f8f8;
+    padding: 15px;
+    width: 154px;
+    height: 75px;
+    text-align: right;
+}
+
+section.content div.login-wrap table td{
+    padding: 15px;
+    width: 358px;
+    height: 71px;
+}
+
+section.content div.login-wrap table td input{
+    padding: 10px;
+    width: 298px;
+}
+
+
+/* section.content .login-wrap .input-wrap {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+section.content .login-wrap .input-wrap .left{
+    display: inline;
+    padding: 15px;
+    width: 154px;
+    height: 75px;
+    background: #f8f8f8;
+    text-align: right;
+    align-items: center;
+}
+
+section.content .login-wrap .input-wrap .right{
+    padding: 15px;
+    width: 308px;
+    height: 71px;
+    text-align: center;
+}
+
+
+section.content .login-wrap .input-wrap .right input{
+    width: 250px;
+    height: 40px;
+} */

@@ -1,0 +1,27 @@
+{% extends './subbannervar.html' %}
+
+{% block subtitle %}
+<link rel="stylesheet" href="/css/subtitle.css">
+
+<section class="main-wrap">
+    <div class="title-wrap">
+        {% for name, item in path %}
+            {% if loop.index === loop.length %}
+                <p class="sub-title">{{name}}</p>
+            {% else %}
+                {% if loop.first %}
+                {% else %}
+                <span> > </span>
+                {% endif %}
+                <span> {{name}}</span>
+            {% endif %}
+        {% endfor %}
+        
+        
+    </div>
+</section>
+
+    {% block mainContent %}
+    {% endblock %}
+
+{% endblock %}
